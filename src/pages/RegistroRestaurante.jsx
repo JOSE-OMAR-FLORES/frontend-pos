@@ -1,6 +1,7 @@
 // src/pages/RegistroRestaurante.jsx
 import { useState } from "react";
 import PrivacyModal from "../components/PrivacyModal";
+import { BACKEND_URL } from '../config';
 
 export default function RegistroRestaurante() {
   const [aceptado, setAceptado] = useState(false);
@@ -25,7 +26,7 @@ export default function RegistroRestaurante() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://backend-pos.test/api/restaurantes", {
+const res = await fetch(`${BACKEND_URL}/restaurantes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

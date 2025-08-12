@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { BACKEND_URL } from '../config';
 import { MetricsCards } from "@/components/analytics/MetricsCards";
 import { WeeklySalesChart } from "@/components/analytics/WeeklySalesChart";
 import { TopProductsChart } from "@/components/analytics/TopProductsChart";
@@ -11,12 +11,11 @@ const Analytics = () => {
   const { isAuthenticated, userRole } = useAuth();
   const navigate = useNavigate();
 
-  const handleDownloadSummary = async () => {
-    try {
-      const res = await axios.get("http://backend-pos.test/api/analytics/monthly-summary", {
-        responseType: "blob",
-      });
-
+const handleDownloadSummary = async () => {
+  try {
+    const res = await axios.get(`${BACKEND_URL}/analytics/monthly-summary`, {
+      responseType: "blob",
+    });
       const url = window.URL.createObjectURL(new Blob([res.data]));
       const link = document.createElement("a");
       link.href = url;
@@ -49,7 +48,6 @@ const Analytics = () => {
 
     const fetchMetrics = async () => {
       try {
-        const res = await axios.get("http://backend-pos.test/api/analytics");
         setMetrics(res.data);
       } catch (error) {
         console.error("Error al cargar métricas:", error);

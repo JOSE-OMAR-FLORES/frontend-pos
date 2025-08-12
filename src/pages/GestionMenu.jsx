@@ -1,5 +1,6 @@
 // src/pages/GestionMenu.jsx
 import { useEffect, useState } from "react";
+import { BACKEND_URL } from '../config';
 
 export default function GestionMenu() {
   const [productos, setProductos] = useState([]);
@@ -12,7 +13,6 @@ export default function GestionMenu() {
   const [editId, setEditId] = useState(null);
 
   useEffect(() => {
-    fetch("http://backend-pos.test/api/productos")
       .then((res) => res.json())
       .then(setProductos)
       .catch(console.error);
@@ -33,11 +33,6 @@ export default function GestionMenu() {
     data.append("descripcion", formData.descripcion);
     data.append("precio", formData.precio);
     if (formData.imagen) data.append("imagen", formData.imagen);
-
-    const url = editId
-      ? `http://backend-pos.test/api/productos/${editId}`
-      : "http://backend-pos.test/api/productos";
-    const method = editId ? "POST" : "POST";
 
     const response = await fetch(url, {
       method: method,
@@ -64,8 +59,7 @@ export default function GestionMenu() {
 
   const handleDelete = async (id) => {
     if (!confirm("¿Seguro que deseas eliminar este producto?")) return;
-
-    const res = await fetch(`http://backend-pos.test/api/productos/${id}`, {
+    {
       method: "DELETE",
     });
 
@@ -129,8 +123,7 @@ export default function GestionMenu() {
             <p>{p.descripcion}</p>
             <p className="text-green-600 font-semibold">${p.precio}</p>
             {p.imagen && (
-              <img
-                src={`http://backend-pos.test/storage/${p.imagen}`}
+              
                 alt={p.nombre}
                 className="w-32 mt-2"
               />

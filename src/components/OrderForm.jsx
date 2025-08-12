@@ -1,10 +1,10 @@
 // src/components/OrderForm.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
+import { BACKEND_URL } from '../config';
 
 const OrderForm = ({ selectedProducts, onOrderCreated }) => {
   const [orderItems, setOrderItems] = useState({});
-  const BACKEND_URL = 'http://backend-pos.test/api'; // Asegúrate de que esta URL sea correcta
 
   // Añadir producto al carrito
   const handleAddProduct = (product) => {
@@ -73,7 +73,7 @@ const OrderForm = ({ selectedProducts, onOrderCreated }) => {
   };
 
   return (
-    <div className="order-form p-6 border rounded-lg shadow-md">
+    <div className="order-form p-6 border rounded-lg shadow-md bg-white">
       <h2 className="text-xl font-bold mb-4">Crear Pedido</h2>
 
       <div>
@@ -90,16 +90,16 @@ const OrderForm = ({ selectedProducts, onOrderCreated }) => {
                     <span>
                       {product.name} x {quantity} (${(product.price * quantity).toFixed(2)})
                     </span>
-                    <div>
+                    <div className="flex gap-2">
                       <button
                         onClick={() => handleRemoveProduct(product)}
-                        className="bg-red-500 text-white px-2 py-1 rounded-md mr-2"
+                        className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition"
                       >
                         -
                       </button>
                       <button
                         onClick={() => handleAddProduct(product)}
-                        className="bg-green-500 text-white px-2 py-1 rounded-md"
+                        className="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 transition"
                       >
                         +
                       </button>
@@ -118,13 +118,13 @@ const OrderForm = ({ selectedProducts, onOrderCreated }) => {
         <div className="flex justify-end gap-4 mt-4">
           <button
             onClick={() => handleSubmitOrder('cash')}
-            className="bg-green-600 text-white px-4 py-2 rounded-md"
+            className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition"
           >
             Pagar en efectivo
           </button>
           <button
             onClick={() => handleSubmitOrder('card')}
-            className="bg-purple-600 text-white px-4 py-2 rounded-md"
+            className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition"
           >
             Pagar con tarjeta
           </button>
