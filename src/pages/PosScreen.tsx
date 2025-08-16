@@ -90,7 +90,7 @@ const PosScreen = () => {
   };
 
   const getTotalPrice = () =>
-    cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    cart.reduce((total, item) => total + parseFloat(item.price) * item.quantity, 0);
 
   const getTotalItems = () =>
     cart.reduce((total, item) => total + item.quantity, 0);
@@ -107,7 +107,7 @@ const PosScreen = () => {
         items: cart.map(item => ({
           product_id: item.id,
           quantity: item.quantity,
-          price_at_order: item.price,
+          price_at_order: parseFloat(item.price),
         })),
       };
       await axios.post(`${BACKEND_URL}/orders`, orderData);
@@ -201,7 +201,7 @@ const PosScreen = () => {
                             {/* Aquí podrías poner una imagen si la tienes */}
                           </div>
                           <h3 className="font-semibold">{item.name}</h3>
-                          <p className="text-gray-600">${item.price.toFixed(2)}</p>
+                          <p className="text-gray-600">${parseFloat(item.price).toFixed(2)}</p>
                           <div className="flex items-center justify-between mt-2">
                             <span>{item.description}</span>
                             <Button
@@ -248,7 +248,7 @@ const PosScreen = () => {
                       <div key={item.id} className="flex justify-between items-center">
                         <div className="flex-1">
                           <h4 className="font-medium">{item.name}</h4>
-                          <p className="text-sm text-gray-600">${item.price.toFixed(2)}</p>
+                          <p className="text-sm text-gray-600">${parseFloat(item.price).toFixed(2)}</p>
                         </div>
                         <div className="flex items-center gap-2">
                           <Button size="sm" variant="outline" onClick={() => removeFromCart(item.id)}>
@@ -259,7 +259,7 @@ const PosScreen = () => {
                             <Plus className="w-4 h-4" />
                           </Button>
                         </div>
-                        <div className="ml-4 font-semibold">${(item.price * item.quantity).toFixed(2)}</div>
+                        <div className="ml-4 font-semibold">${(parseFloat(item.price) * item.quantity).toFixed(2)}</div>
                       </div>
                     ))
                   )}
