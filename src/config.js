@@ -1,1 +1,1 @@
-export const BACKEND_URL = 'https://api.posfastfoodmall.food/api';
+export const BACKEND_URL = 'https://goldfish-app-xkvzk.ondigitalocean.app/api';
