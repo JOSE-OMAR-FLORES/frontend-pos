@@ -36,9 +36,9 @@ const handleDownloadSummary = async () => {
     ordenes_hoy: number;
     ordenes_totales: number;
     clientes_unicos: number;
-    tiempo_promedio: string;
+    tiempo_promedio: number;
     ventas_semanales: { dia: string; total: number }[];
-    productos_mas_vendidos: { categoria: string; total: number }[];
+    productos_mas_vendidos: { categoria: string; cantidad: number }[];
   } | null>(null);
 
   useEffect(() => {
