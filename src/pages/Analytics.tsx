@@ -49,6 +49,7 @@ const handleDownloadSummary = async () => {
 
     const fetchMetrics = async () => {
       try {
+        const res = await axios.get(`${BACKEND_URL}/analytics/metrics`);
         setMetrics(res.data);
       } catch (error) {
         console.error("Error al cargar métricas:", error);
