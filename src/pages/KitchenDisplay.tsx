@@ -8,7 +8,6 @@ import axios from 'axios';
 import { useAuth } from "@/context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { BACKEND_URL } from '../config';
-import { ORDERS_API_URL } from '../config';
 
 interface ApiOrderItem {
     id: number;
