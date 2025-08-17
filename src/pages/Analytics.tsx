@@ -3,6 +3,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BACKEND_URL } from '../config';
+import { ORDERS_API_URL } from '../config';
 import { MetricsCards } from "@/components/analytics/MetricsCards";
 import { WeeklySalesChart } from "@/components/analytics/WeeklySalesChart";
 import { TopProductsChart } from "@/components/analytics/TopProductsChart";
